@@ -1,0 +1,190 @@
+[gd_scene format=3 uid="uid://mgp02mkor0at"]
+
+[ext_resource type="Script" uid="uid://bakqlkmte46gt" path="res://camera_3d.gd" id="1_a202f"]
+[ext_resource type="Texture2D" uid="uid://b23d33x7jvdls" path="res://Textures/blue_metal_plate_diff_4k.jpg" id="1_i5arm"]
+[ext_resource type="Script" uid="uid://4oejj2uhduad" path="res://target_spawner.gd" id="2_a0tk4"]
+[ext_resource type="Script" uid="uid://c3blwjb5uj1y5" path="res://shop_panel.gd" id="2_jka67"]
+[ext_resource type="PackedScene" uid="uid://hwkql520awev" path="res://target.tscn" id="2_noarx"]
+[ext_resource type="Script" uid="uid://klep18oa8dh7" path="res://game_manager.gd" id="4_r3fl7"]
+[ext_resource type="AudioStream" uid="uid://b6liabqw5yii1" path="res://Textures/Everen Maxwell - Wanderlust [NCS Release].mp3" id="7_wc5p8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wc5p8"]
+albedo_texture = ExtResource("1_i5arm")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gohfv"]
+material = SubResource("StandardMaterial3D_wc5p8")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_y82my"]
+
+[node name="Node3D" type="Node3D" unique_id=2107401706]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1607477501]
+transform = Transform3D(0.066653244, 0.07440855, 0.00455102, 0, 0.0061048507, -0.09981348, -0.074547604, 0.06652893, 0.004069082, 0, 4.3001633, 0)
+visible = false
+shadow_enabled = true
+
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=507378322]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_gohfv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2126489249]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0115114, 0)
+mesh = SubResource("CapsuleMesh_y82my")
+
+[node name="Camera3D" type="Camera3D" parent="MeshInstance3D" unique_id=339344291]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.5177555, 0)
+script = ExtResource("1_a202f")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="MeshInstance3D/Camera3D" unique_id=867557459]
+
+[node name="Crosshair" type="Control" parent="MeshInstance3D/Camera3D/CanvasLayer" unique_id=1793549988]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Aim" type="Label" parent="MeshInstance3D/Camera3D/CanvasLayer/Crosshair" unique_id=1268924117]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Result" type="Label" parent="MeshInstance3D/Camera3D/CanvasLayer/Crosshair" unique_id=1630595728]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+horizontal_alignment = 1
+
+[node name="Coins" type="Label" parent="MeshInstance3D/Camera3D/CanvasLayer" unique_id=428693483]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Coins
+"
+
+[node name="GameOver" type="Label" parent="MeshInstance3D/Camera3D/CanvasLayer" unique_id=718689514]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -229.0
+offset_top = -55.0
+offset_right = 229.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.84313726, 0, 0, 1)
+theme_override_font_sizes/font_size = 80
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShopButton" type="Button" parent="MeshInstance3D/Camera3D/CanvasLayer" unique_id=491961497]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -47.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Shop
+"
+
+[node name="ShopPanel" type="Panel" parent="MeshInstance3D/Camera3D/CanvasLayer" unique_id=1571515228]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 460.0
+offset_bottom = 460.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+script = ExtResource("2_jka67")
+
+[node name="CloseButton" type="Button" parent="MeshInstance3D/Camera3D/CanvasLayer/ShopPanel" unique_id=700591679]
+layout_mode = 0
+offset_left = 420.0
+offset_top = 10.0
+offset_right = 428.0
+offset_bottom = 18.0
+text = "CLOSE"
+
+[node name="RapidGunButton" type="Button" parent="MeshInstance3D/Camera3D/CanvasLayer/ShopPanel" unique_id=799931119]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 60.0
+offset_right = 28.0
+offset_bottom = 68.0
+text = "Auto Pistol - 5 Coins"
+
+[node name="LaserGunButton" type="Button" parent="MeshInstance3D/Camera3D/CanvasLayer/ShopPanel" unique_id=2084034828]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 110.0
+offset_right = 28.0
+offset_bottom = 118.0
+text = "P90 - 10 Coins"
+
+[node name="MinigunButton" type="Button" parent="MeshInstance3D/Camera3D/CanvasLayer/ShopPanel" unique_id=1216417533]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 160.0
+offset_right = 28.0
+offset_bottom = 168.0
+text = "M4A1-S - 20 Coins"
+
+[node name="ShotgunButton" type="Button" parent="MeshInstance3D/Camera3D/CanvasLayer/ShopPanel" unique_id=1587774759]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 210.0
+offset_right = 28.0
+offset_bottom = 218.0
+text = "AK-47 - 30 Coins"
+
+[node name="BlasterButton" type="Button" parent="MeshInstance3D/Camera3D/CanvasLayer/ShopPanel" unique_id=136700852]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 260.0
+offset_right = 28.0
+offset_bottom = 268.0
+text = "NEGEV - 50 Coins"
+
+[node name="WaveManager" type="Node3D" parent="." unique_id=677011634 node_paths=PackedStringArray("camera")]
+script = ExtResource("4_r3fl7")
+target_scene = ExtResource("2_noarx")
+camera = NodePath("../MeshInstance3D/Camera3D")
+
+[node name="Target spawner" type="Node3D" parent="WaveManager" unique_id=4781733]
+script = ExtResource("2_a0tk4")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=599866712]
+stream = ExtResource("7_wc5p8")
+autoplay = true

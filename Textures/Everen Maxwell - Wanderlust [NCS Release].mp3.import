@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b6liabqw5yii1"
+path="res://.godot/imported/Everen Maxwell - Wanderlust [NCS Release].mp3-e18e29a0a487761e05ef6ad12bccff65.mp3str"
+
+[deps]
+
+source_file="res://Textures/Everen Maxwell - Wanderlust [NCS Release].mp3"
+dest_files=["res://.godot/imported/Everen Maxwell - Wanderlust [NCS Release].mp3-e18e29a0a487761e05ef6ad12bccff65.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

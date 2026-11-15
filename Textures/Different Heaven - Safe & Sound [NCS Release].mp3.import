@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://s46k78gc1nam"
+path="res://.godot/imported/Different Heaven - Safe & Sound [NCS Release].mp3-2aba9d590641509e35c9967295d8088f.mp3str"
+
+[deps]
+
+source_file="res://Textures/Different Heaven - Safe & Sound [NCS Release].mp3"
+dest_files=["res://.godot/imported/Different Heaven - Safe & Sound [NCS Release].mp3-2aba9d590641509e35c9967295d8088f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

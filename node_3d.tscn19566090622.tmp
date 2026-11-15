@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://mgp02mkor0at"]
+
+[ext_resource type="Script" uid="uid://bakqlkmte46gt" path="res://camera_3d.gd" id="1_a202f"]
+[ext_resource type="Script" uid="uid://4oejj2uhduad" path="res://target_spawner.gd" id="2_a0tk4"]
+[ext_resource type="PackedScene" uid="uid://hwkql520awev" path="res://target.tscn" id="2_noarx"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gohfv"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_y82my"]
+
+[node name="Node3D" type="Node3D" unique_id=2107401706]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1607477501]
+transform = Transform3D(0.066653244, 0.07440855, 0.00455102, 0, 0.0061048507, -0.09981348, -0.074547604, 0.06652893, 0.004069082, 0, 4.3001633, 0)
+visible = false
+shadow_enabled = true
+
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=507378322]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_gohfv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2126489249]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0115114, 0)
+mesh = SubResource("CapsuleMesh_y82my")
+
+[node name="Camera3D" type="Camera3D" parent="MeshInstance3D" unique_id=339344291]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.5177555, 0)
+script = ExtResource("1_a202f")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="MeshInstance3D/Camera3D" unique_id=867557459]
+
+[node name="Crosshair" type="Control" parent="MeshInstance3D/Camera3D/CanvasLayer" unique_id=1793549988]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Aim" type="Label" parent="MeshInstance3D/Camera3D/CanvasLayer/Crosshair" unique_id=1268924117]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Result" type="Label" parent="MeshInstance3D/Camera3D/CanvasLayer/Crosshair" unique_id=1630595728]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+horizontal_alignment = 1
+
+[node name="Coins" type="Label" parent="MeshInstance3D/Camera3D/CanvasLayer" unique_id=428693483]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Coins
+"
+
+[node name="Target spawner" type="Node3D" parent="." unique_id=4781733]
+script = ExtResource("2_a0tk4")
+
+[node name="Target" parent="Target spawner" unique_id=1707353226 instance=ExtResource("2_noarx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1821227, 4.4388337, 0)
+
+[node name="Target spawner2" type="Node3D" parent="." unique_id=867575994]
+script = ExtResource("2_a0tk4")
+
+[node name="Target" parent="Target spawner2" unique_id=1853992685 instance=ExtResource("2_noarx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1821227, 4.4388337, 0)
